@@ -30,8 +30,8 @@
 		730478AF161FDA6C005869BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		730478BD161FDA95005869BA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		730478C2161FDBBF005869BA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		730478DA1620F131005869BA /* KGPixelBoundsClip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGPixelBoundsClip.h; sourceTree = "<group>"; };
-		730478DB1620F131005869BA /* KGPixelBoundsClip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGPixelBoundsClip.m; sourceTree = "<group>"; };
+		730478DA1620F131005869BA /* KGPixelBoundsClip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGPixelBoundsClip.h; path = ../KGPixelBoundsClip.h; sourceTree = "<group>"; };
+		730478DB1620F131005869BA /* KGPixelBoundsClip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KGPixelBoundsClip.m; path = ../KGPixelBoundsClip.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +222,7 @@
 				730478BC161FDA6C005869BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
