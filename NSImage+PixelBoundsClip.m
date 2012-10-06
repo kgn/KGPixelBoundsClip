@@ -97,10 +97,10 @@
 }
 
 - (void)findTopLeftPoint{
-    if(self.topLeftY > self.bottomRightY){
+    if(self.topLeftY >= self.bottomRightY){
         return;
     }
-    if(self.topLeftX > self.bottomRightX){
+    if(self.topLeftX >= self.bottomRightX){
         return;
     }
     
@@ -120,10 +120,10 @@
 }
 
 - (void)findBottomRightPoint{
-    if(self.topLeftY < self.bottomRightY){
+    if(self.topLeftY >= self.bottomRightY){
         return;
     }
-    if(self.topLeftX < self.bottomRightX){
+    if(self.topLeftX >= self.bottomRightX){
         return;
     }
     
@@ -148,9 +148,13 @@
                                  self.bottomRightY-self.topLeftY);
     if(clipRect.size.width > 0){
         clipRect.size.width++;
+    }else{
+        clipRect.origin.x = 0;
     }
     if(clipRect.size.height > 0){
         clipRect.size.height++;
+    }else{
+        clipRect.origin.y = 0;
     }
     return clipRect;
 }
