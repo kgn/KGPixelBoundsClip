@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		730478B0161FDA6C005869BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730478AF161FDA6C005869BA /* Foundation.framework */; };
-		730478B3161FDA6C005869BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 730478B2161FDA6C005869BA /* main.m */; };
-		730478B7161FDA6C005869BA /* KGPixelBoundsClip.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 730478B6161FDA6C005869BA /* KGPixelBoundsClip.1 */; };
+		730478BE161FDA95005869BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 730478BD161FDA95005869BA /* main.m */; };
+		730478C1161FDB89005869BA /* NSImage+PixelBoundsClip.m in Sources */ = {isa = PBXBuildFile; fileRef = 730478C0161FDB89005869BA /* NSImage+PixelBoundsClip.m */; };
+		730478C3161FDBBF005869BA /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730478C2161FDBBF005869BA /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -19,7 +20,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				730478B7161FDA6C005869BA /* KGPixelBoundsClip.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -28,9 +28,10 @@
 /* Begin PBXFileReference section */
 		730478AB161FDA6C005869BA /* KGPixelBoundsClip */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KGPixelBoundsClip; sourceTree = BUILT_PRODUCTS_DIR; };
 		730478AF161FDA6C005869BA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		730478B2161FDA6C005869BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		730478B5161FDA6C005869BA /* KGPixelBoundsClip-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KGPixelBoundsClip-Prefix.pch"; sourceTree = "<group>"; };
-		730478B6161FDA6C005869BA /* KGPixelBoundsClip.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = KGPixelBoundsClip.1; sourceTree = "<group>"; };
+		730478BD161FDA95005869BA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		730478BF161FDB89005869BA /* NSImage+PixelBoundsClip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+PixelBoundsClip.h"; sourceTree = "<group>"; };
+		730478C0161FDB89005869BA /* NSImage+PixelBoundsClip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+PixelBoundsClip.m"; sourceTree = "<group>"; };
+		730478C2161FDBBF005869BA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				730478C3161FDBBF005869BA /* AppKit.framework in Frameworks */,
 				730478B0161FDA6C005869BA /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,7 +50,9 @@
 		730478A0161FDA6C005869BA = {
 			isa = PBXGroup;
 			children = (
-				730478B1161FDA6C005869BA /* KGPixelBoundsClip */,
+				730478BD161FDA95005869BA /* main.m */,
+				730478BF161FDB89005869BA /* NSImage+PixelBoundsClip.h */,
+				730478C0161FDB89005869BA /* NSImage+PixelBoundsClip.m */,
 				730478AE161FDA6C005869BA /* Frameworks */,
 				730478AC161FDA6C005869BA /* Products */,
 			);
@@ -65,27 +69,10 @@
 		730478AE161FDA6C005869BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				730478C2161FDBBF005869BA /* AppKit.framework */,
 				730478AF161FDA6C005869BA /* Foundation.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		730478B1161FDA6C005869BA /* KGPixelBoundsClip */ = {
-			isa = PBXGroup;
-			children = (
-				730478B2161FDA6C005869BA /* main.m */,
-				730478B6161FDA6C005869BA /* KGPixelBoundsClip.1 */,
-				730478B4161FDA6C005869BA /* Supporting Files */,
-			);
-			path = KGPixelBoundsClip;
-			sourceTree = "<group>";
-		};
-		730478B4161FDA6C005869BA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				730478B5161FDA6C005869BA /* KGPixelBoundsClip-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +126,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				730478B3161FDA6C005869BA /* main.m in Sources */,
+				730478BE161FDA95005869BA /* main.m in Sources */,
+				730478C1161FDB89005869BA /* NSImage+PixelBoundsClip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,8 +190,6 @@
 		730478BB161FDA6C005869BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "KGPixelBoundsClip/KGPixelBoundsClip-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -211,8 +197,6 @@
 		730478BC161FDA6C005869BA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "KGPixelBoundsClip/KGPixelBoundsClip-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
