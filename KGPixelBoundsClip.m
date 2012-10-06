@@ -1,52 +1,20 @@
 //
-//  NSImage+PixelBoundsClip.m
+//  KGPixelBoundsClip.m
 //  KGPixelBoundsClip
 //
-//  Created by David Keegan on 10/5/12.
+//  Created by David Keegan on 10/6/12.
 //  Copyright (c) 2012 David Keegan. All rights reserved.
 //
 
-#import "NSImage+PixelBoundsClip.h"
+#import "KGPixelBoundsClip.h"
 
 @interface KGPixelBoundsClip : NSObject
-@property (nonatomic) NSRect rect;
-- (id)initWithImage:(NSImage *)image andTolerance:(CGFloat)tolerance;
-@end
-
-@implementation NSImage(PixelBoundsClip)
-
-- (NSRect)rectOfPixelBounds{
-    return [self rectOfPixelBoundsWithTolerance:0];
-}
-
-- (NSRect)rectOfPixelBoundsWithTolerance:(CGFloat)tolerance{
-    return [[[KGPixelBoundsClip alloc] initWithImage:self andTolerance:tolerance] rect];
-}
-
-- (NSImage *)imageClippedToPixelBounds{
-    return [self imageClippedToPixelBoundsWithTolerance:0];
-}
-
-- (NSImage *)imageClippedToPixelBoundsWithTolerance:(CGFloat)tolerance{
-    NSRect clipRect = [self rectOfPixelBoundsWithTolerance:tolerance];
-    if(clipRect.size.width == 0 || clipRect.size.height == 0){
-        return nil;
-    }
-    
-    CGImageRef imageRef = [self CGImageForProposedRect:nil context:nil hints:nil];
-    CGImageRef croppedImageRef = CGImageCreateWithImageInRect(imageRef, clipRect);
-    NSImage *croppedImage = [[NSImage alloc] initWithCGImage:croppedImageRef size:NSZeroSize];
-    CGImageRelease(croppedImageRef);
-    return croppedImage;
-}
-
-@end
-
-@interface KGPixelBoundsClip()
 @property (strong, nonatomic) NSBitmapImageRep *bitmapImage;
 @property (nonatomic) NSUInteger topLeftX, topLeftY;
 @property (nonatomic) NSUInteger bottomRightX, bottomRightY;
 @property (nonatomic) CGFloat tolerance;
+@property (nonatomic) NSRect rect;
+- (id)initWithImage:(NSImage *)image andTolerance:(CGFloat)tolerance;
 @end
 
 @implementation KGPixelBoundsClip
@@ -115,17 +83,17 @@
     if(self.topLeftX >= self.bottomRightX){
         return;
     }
-    
+
     BOOL foundY = [self rowContainsOpaquePixelInRowY:self.topLeftY fromX:self.topLeftX reversed:NO];
     BOOL foundX = [self rowContainsOpaquePixelInRowX:self.topLeftX fromY:self.topLeftY reversed:NO];
-    
+
     if(!foundY){
         self.topLeftY++;
     }
     if(!foundX){
         self.topLeftX++;
     }
-    
+
     if(!foundX || !foundY){
         [self findTopLeftPoint];
     }
@@ -138,7 +106,7 @@
     if(self.topLeftX >= self.bottomRightX){
         return;
     }
-    
+
     BOOL foundY = [self rowContainsOpaquePixelInRowY:self.bottomRightY fromX:self.bottomRightX reversed:YES];
     BOOL foundX = [self rowContainsOpaquePixelInRowX:self.bottomRightX fromY:self.bottomRightY reversed:YES];
 
@@ -172,3 +140,67 @@
 }
 
 @end
+
+#if TARGET_OS_IPHONE
+
+@implementation NSImage(KGPixelBoundsClip)
+
+- (CGRect)rectOfPixelBounds{
+    return [self rectOfPixelBoundsWithTolerance:0];
+}
+
+- (CGRect)rectOfPixelBoundsWithTolerance:(CGFloat)tolerance{
+    return NSRectToCGRect([[[KGPixelBoundsClip alloc] initWithImage:self andTolerance:tolerance] rect]);
+}
+
+- (UIImage *)imageClippedToPixelBounds{
+    return [self imageClippedToPixelBoundsWithTolerance:0];
+}
+
+- (UIImage *)imageClippedToPixelBoundsWithTolerance:(CGFloat)tolerance{
+    CGRect clipRect = [self rectOfPixelBoundsWithTolerance:tolerance];
+    if(clipRect.size.width == 0 || clipRect.size.height == 0){
+        return nil;
+    }
+
+    CGImageRef imageRef = [self CGImageForProposedRect:nil context:nil hints:nil];
+    CGImageRef croppedImageRef = CGImageCreateWithImageInRect(imageRef, clipRect);
+    NSImage *croppedImage = [[NSImage alloc] initWithCGImage:croppedImageRef size:NSZeroSize];
+    CGImageRelease(croppedImageRef);
+    return croppedImage;
+}
+
+@end
+
+#else
+
+@implementation NSImage(KGPixelBoundsClip)
+
+- (NSRect)rectOfPixelBounds{
+    return [self rectOfPixelBoundsWithTolerance:0];
+}
+
+- (NSRect)rectOfPixelBoundsWithTolerance:(CGFloat)tolerance{
+    return [[[KGPixelBoundsClip alloc] initWithImage:self andTolerance:tolerance] rect];
+}
+
+- (NSImage *)imageClippedToPixelBounds{
+    return [self imageClippedToPixelBoundsWithTolerance:0];
+}
+
+- (NSImage *)imageClippedToPixelBoundsWithTolerance:(CGFloat)tolerance{
+    NSRect clipRect = [self rectOfPixelBoundsWithTolerance:tolerance];
+    if(clipRect.size.width == 0 || clipRect.size.height == 0){
+        return nil;
+    }
+
+    CGImageRef imageRef = [self CGImageForProposedRect:nil context:nil hints:nil];
+    CGImageRef croppedImageRef = CGImageCreateWithImageInRect(imageRef, clipRect);
+    NSImage *croppedImage = [[NSImage alloc] initWithCGImage:croppedImageRef size:NSZeroSize];
+    CGImageRelease(croppedImageRef);
+    return croppedImage;
+}
+
+@end
+
+#endif
