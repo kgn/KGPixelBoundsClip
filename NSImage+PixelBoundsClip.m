@@ -8,47 +8,15 @@
 
 #import "NSImage+PixelBoundsClip.h"
 
+@interface KGPixelBoundsClip : NSObject
+@property (nonatomic) NSRect rect;
+- (id)initWithImage:(NSImage *)image;
+@end
+
 @implementation NSImage(PixelBoundsClip)
 
 - (NSRect)rectOfPixelBounds{
-    NSBitmapImageRep *bitmapImage = [[NSBitmapImageRep alloc] initWithData:[self TIFFRepresentation]];
-    NSInteger width = [bitmapImage pixelsWide];
-    NSInteger height = [bitmapImage pixelsHigh];
-
-    NSRect clipRect = CGRectZero;
-    clipRect.origin.x = clipRect.size.width = round(width*0.5);
-    clipRect.origin.y = clipRect.size.height = round(height*0.5);
-    for(NSUInteger x = 0; x < width; ++x){
-        for(NSUInteger y = 0; y < height; ++y){
-            CGFloat red, green, blue, alpha;
-            NSColor *color = [bitmapImage colorAtX:x y:y];
-            [color getRed:&red green:&green blue:&blue alpha:&alpha];
-            if(alpha > 0){
-                if(x < clipRect.origin.x){
-                    clipRect.origin.x = x;
-                }else if(x > clipRect.size.width){
-                    clipRect.size.width = x;
-                }
-
-                if(y < clipRect.origin.y){
-                    clipRect.origin.y = y;
-                }else if(y > clipRect.size.height){
-                    clipRect.size.height = y;
-                }
-            }
-        }
-    }
-
-    clipRect.size.width -= clipRect.origin.x;
-    clipRect.size.height -= clipRect.origin.y;
-    if(clipRect.size.width > 0){
-        clipRect.size.width++;
-    }
-    if(clipRect.size.height > 0){
-        clipRect.size.height++;
-    }
-
-    return clipRect;
+    return [[[KGPixelBoundsClip alloc] initWithImage:self] rect];
 }
 
 - (NSImage *)imageClippedToPixelBounds{
@@ -63,6 +31,128 @@
     NSImage *croppedImage = [[NSImage alloc] initWithCGImage:croppedImageRef size:NSZeroSize];
     CGImageRelease(croppedImageRef), croppedImageRef = nil;
     return croppedImage;
+}
+
+@end
+
+@interface KGPixelBoundsClip()
+@property (strong, nonatomic) NSBitmapImageRep *bitmapImage;
+@property (nonatomic) NSUInteger topLeftX, topLeftY;
+@property (nonatomic) NSUInteger bottomRightX, bottomRightY;
+@end
+
+@implementation KGPixelBoundsClip
+
+- (id)initWithImage:(NSImage *)image{
+    if(!(self = [super init])){
+        return nil;
+    }
+    self.bitmapImage = [[NSBitmapImageRep alloc] initWithData:[image TIFFRepresentation]];
+    self.bottomRightX = [self.bitmapImage pixelsWide]-1;
+    self.bottomRightY = [self.bitmapImage pixelsHigh]-1;
+    [self findTopLeftPoint];
+    [self findBottomRightPoint];
+    return self;
+}
+
+- (BOOL)pixelIsOpaqueAtX:(NSUInteger)x andY:(NSUInteger)y{
+    CGFloat red, green, blue, alpha;
+    NSColor *color = [self.bitmapImage colorAtX:x y:y];
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    return (alpha > 0);
+}
+
+- (BOOL)rowContainsOpaquePixelInRowY:(NSUInteger)rowY fromX:(NSUInteger)fromX reversed:(BOOL)reversed{
+    if(reversed){
+        for(NSUInteger x = self.bottomRightX; x > self.topLeftX; --x){
+            if([self pixelIsOpaqueAtX:x andY:rowY]){
+                return YES;
+            }
+        }
+    }else{
+        for(NSUInteger x = fromX; x < self.bottomRightX; ++x){
+            if([self pixelIsOpaqueAtX:x andY:rowY]){
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+- (BOOL)rowContainsOpaquePixelInRowX:(NSUInteger)rowX fromY:(NSUInteger)fromY reversed:(BOOL)reversed{
+    if(reversed){
+        for(NSUInteger y = self.bottomRightY; y > self.topLeftY; --y){
+            if([self pixelIsOpaqueAtX:rowX andY:y]){
+                return YES;
+            }
+        }
+    }else{
+        for(NSUInteger y = fromY; y < self.bottomRightY; ++y){
+            if([self pixelIsOpaqueAtX:rowX andY:y]){
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
+- (void)findTopLeftPoint{
+    if(self.topLeftY > self.bottomRightY){
+        return;
+    }
+    if(self.topLeftX > self.bottomRightX){
+        return;
+    }
+    
+    BOOL foundY = [self rowContainsOpaquePixelInRowY:self.topLeftY fromX:self.topLeftX reversed:NO];
+    BOOL foundX = [self rowContainsOpaquePixelInRowX:self.topLeftX fromY:self.topLeftY reversed:NO];
+    
+    if(!foundY){
+        self.topLeftY++;
+    }
+    if(!foundX){
+        self.topLeftX++;
+    }
+    
+    if(!foundX || !foundY){
+        [self findTopLeftPoint];
+    }
+}
+
+- (void)findBottomRightPoint{
+    if(self.topLeftY < self.bottomRightY){
+        return;
+    }
+    if(self.topLeftX < self.bottomRightX){
+        return;
+    }
+    
+    BOOL foundY = [self rowContainsOpaquePixelInRowY:self.bottomRightY fromX:self.bottomRightX reversed:YES];
+    BOOL foundX = [self rowContainsOpaquePixelInRowX:self.bottomRightX fromY:self.bottomRightY reversed:YES];
+
+    if(!foundY){
+        self.bottomRightY--;
+    }
+    if(!foundX){
+        self.bottomRightX--;
+    }
+
+    if(!foundX || !foundY){
+        [self findBottomRightPoint];
+    }
+}
+
+- (NSRect)rect{
+    NSRect clipRect = NSMakeRect(self.topLeftX, self.topLeftY,
+                                 self.bottomRightX-self.topLeftX,
+                                 self.bottomRightY-self.topLeftY);
+    if(clipRect.size.width > 0){
+        clipRect.size.width++;
+    }
+    if(clipRect.size.height > 0){
+        clipRect.size.height++;
+    }
+    return clipRect;
 }
 
 @end

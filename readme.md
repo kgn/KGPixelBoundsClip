@@ -1,8 +1,8 @@
 Times:
 
 ```
-'shape.png' cliprect found in 0.391201 seconds: {81.000000, 85.000000, 387.000000, 313.000000}
-'empty.png' cliprect found in 0.338590 seconds: {256.000000, 256.000000, 0.000000, 0.000000}
-'button.png' cliprect found in 0.342062 seconds: {0.000000, 19.000000, 511.000000, 484.000000}
-'rose.png' cliprect found in 0.343195 seconds: {0.000000, 0.000000, 511.000000, 511.000000}
+'shape.png' cliprect found in 0.157750 seconds: {81.000000, 85.000000, 431.000000, 427.000000}
+'empty.png' cliprect found in 0.422353 seconds: {512.000000, 512.000000, 18446744073709551616.000000, 18446744073709551616.000000}
+'button.png' cliprect found in 0.027332 seconds: {0.000000, 19.000000, 512.000000, 493.000000}
+'rose.png' cliprect found in 0.014763 seconds: {0.000000, 0.000000, 512.000000, 512.000000}
 ```
