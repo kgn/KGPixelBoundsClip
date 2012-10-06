@@ -10,7 +10,7 @@
 
 @implementation NSImage(PixelBoundsClip)
 
-- (NSImage *)imageClippedToPixelBounds{
+- (NSRect)rectOfPixelBounds{
     NSBitmapImageRep *bitmapImage = [[NSBitmapImageRep alloc] initWithData:[self TIFFRepresentation]];
     NSInteger width = [bitmapImage pixelsWide];
     NSInteger height = [bitmapImage pixelsHigh];
@@ -20,7 +20,7 @@
     clipRect.origin.y = clipRect.size.height = round(height*0.5);
     for(NSUInteger x = 0; x < width; ++x){
         for(NSUInteger y = 0; y < height; ++y){
-            CGFloat red, green, blue, alpha;            
+            CGFloat red, green, blue, alpha;
             NSColor *color = [bitmapImage colorAtX:x y:y];
             [color getRed:&red green:&green blue:&blue alpha:&alpha];
             if(alpha > 0){
@@ -42,6 +42,15 @@
     clipRect.size.width -= clipRect.origin.x;
     clipRect.size.height -= clipRect.origin.y;
 
+    return clipRect;
+}
+
+- (NSImage *)imageClippedToPixelBounds{
+    NSRect clipRect = [self rectOfPixelBounds];
+    if(clipRect.size.width == 0 || clipRect.size.height == 0){
+        return nil;
+    }
+    
     CGImageRef imageRef = [self CGImageForProposedRect:nil context:nil hints:nil];
     CGImageRef croppedImageRef = CGImageCreateWithImageInRect(imageRef, clipRect);
     CGImageRelease(imageRef), imageRef = nil;

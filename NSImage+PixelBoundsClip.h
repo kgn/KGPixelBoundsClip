@@ -10,6 +10,7 @@
 
 @interface NSImage(PixelBoundsClip)
 
+- (NSRect)rectOfPixelBounds;
 - (NSImage *)imageClippedToPixelBounds;
 
 @end
