@@ -11,6 +11,9 @@
 @interface NSImage(PixelBoundsClip)
 
 - (NSRect)rectOfPixelBounds;
+- (NSRect)rectOfPixelBoundsWithTolerance:(CGFloat)tolerance;
+
 - (NSImage *)imageClippedToPixelBounds;
+- (NSImage *)imageClippedToPixelBoundsWithTolerance:(CGFloat)tolerance;
 
 @end

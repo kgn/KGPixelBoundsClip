@@ -10,17 +10,25 @@
 
 @interface KGPixelBoundsClip : NSObject
 @property (nonatomic) NSRect rect;
-- (id)initWithImage:(NSImage *)image;
+- (id)initWithImage:(NSImage *)image andTolerance:(CGFloat)tolerance;
 @end
 
 @implementation NSImage(PixelBoundsClip)
 
 - (NSRect)rectOfPixelBounds{
-    return [[[KGPixelBoundsClip alloc] initWithImage:self] rect];
+    return [self rectOfPixelBoundsWithTolerance:0];
+}
+
+- (NSRect)rectOfPixelBoundsWithTolerance:(CGFloat)tolerance{
+    return [[[KGPixelBoundsClip alloc] initWithImage:self andTolerance:tolerance] rect];
 }
 
 - (NSImage *)imageClippedToPixelBounds{
-    NSRect clipRect = [self rectOfPixelBounds];
+    return [self imageClippedToPixelBoundsWithTolerance:0];
+}
+
+- (NSImage *)imageClippedToPixelBoundsWithTolerance:(CGFloat)tolerance{
+    NSRect clipRect = [self rectOfPixelBoundsWithTolerance:tolerance];
     if(clipRect.size.width == 0 || clipRect.size.height == 0){
         return nil;
     }
@@ -39,14 +47,16 @@
 @property (strong, nonatomic) NSBitmapImageRep *bitmapImage;
 @property (nonatomic) NSUInteger topLeftX, topLeftY;
 @property (nonatomic) NSUInteger bottomRightX, bottomRightY;
+@property (nonatomic) CGFloat tolerance;
 @end
 
 @implementation KGPixelBoundsClip
 
-- (id)initWithImage:(NSImage *)image{
+- (id)initWithImage:(NSImage *)image andTolerance:(CGFloat)tolerance{
     if(!(self = [super init])){
         return nil;
     }
+    self.tolerance = tolerance;
     self.bitmapImage = [[NSBitmapImageRep alloc] initWithData:[image TIFFRepresentation]];
     self.bottomRightX = [self.bitmapImage pixelsWide]-1;
     self.bottomRightY = [self.bitmapImage pixelsHigh]-1;
@@ -59,7 +69,7 @@
     CGFloat red, green, blue, alpha;
     NSColor *color = [self.bitmapImage colorAtX:x y:y];
     [color getRed:&red green:&green blue:&blue alpha:&alpha];
-    return (alpha > 0);
+    return (alpha > self.tolerance);
 }
 
 - (BOOL)rowContainsOpaquePixelInRowY:(NSUInteger)rowY fromX:(NSUInteger)fromX reversed:(BOOL)reversed{
