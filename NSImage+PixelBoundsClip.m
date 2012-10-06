@@ -35,9 +35,8 @@
     
     CGImageRef imageRef = [self CGImageForProposedRect:nil context:nil hints:nil];
     CGImageRef croppedImageRef = CGImageCreateWithImageInRect(imageRef, clipRect);
-    CGImageRelease(imageRef), imageRef = nil;
     NSImage *croppedImage = [[NSImage alloc] initWithCGImage:croppedImageRef size:NSZeroSize];
-    CGImageRelease(croppedImageRef), croppedImageRef = nil;
+    CGImageRelease(croppedImageRef);
     return croppedImage;
 }
 
@@ -69,7 +68,10 @@
     CGFloat red, green, blue, alpha;
     NSColor *color = [self.bitmapImage colorAtX:x y:y];
     [color getRed:&red green:&green blue:&blue alpha:&alpha];
-    return (alpha > self.tolerance);
+    if(alpha > 0){
+        return (alpha >= self.tolerance);
+    }
+    return NO;
 }
 
 - (BOOL)rowContainsOpaquePixelInRowY:(NSUInteger)rowY fromX:(NSUInteger)fromX reversed:(BOOL)reversed{
