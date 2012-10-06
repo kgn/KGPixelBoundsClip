@@ -41,6 +41,12 @@
 
     clipRect.size.width -= clipRect.origin.x;
     clipRect.size.height -= clipRect.origin.y;
+    if(clipRect.size.width > 0){
+        clipRect.size.width++;
+    }
+    if(clipRect.size.height > 0){
+        clipRect.size.height++;
+    }
 
     return clipRect;
 }

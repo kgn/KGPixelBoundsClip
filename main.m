@@ -26,13 +26,13 @@ int main(int argc, const char * argv[]){
                   [imagePath lastPathComponent], secondsBetween,
                   clipRect.origin.x, clipRect.origin.y, clipRect.size.width, clipRect.size.height);
 
-//            NSImage *clippedImage = [image imageClippedToPixelBounds];
-//            if(clippedImage){
-//                NSString *outputImagePath = [NSString stringWithFormat:@"%@_clipped.png",[imagePath stringByDeletingPathExtension]];
-//                NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:[clippedImage TIFFRepresentation]];
-//                NSData *imageData = [imageRep representationUsingType:NSPNGFileType properties:nil];
-//                [imageData writeToFile:outputImagePath atomically:NO];
-//            }
+            NSImage *clippedImage = [image imageClippedToPixelBounds];
+            if(clippedImage){
+                NSString *outputImagePath = [NSString stringWithFormat:@"%@_clipped.png",[imagePath stringByDeletingPathExtension]];
+                NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:[clippedImage TIFFRepresentation]];
+                NSData *imageData = [imageRep representationUsingType:NSPNGFileType properties:nil];
+                [imageData writeToFile:outputImagePath atomically:NO];
+            }
         }];
     }
     return 0;
