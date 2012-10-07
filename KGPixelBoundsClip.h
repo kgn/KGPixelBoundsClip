@@ -28,8 +28,8 @@
 
 @interface NSImage(KGPixelBoundsClip)
 
-- (NSRect)rectOfPixelBounds;
-- (NSRect)rectOfPixelBoundsWithTolerance:(CGFloat)tolerance;
+- (CGRect)rectOfPixelBounds;
+- (CGRect)rectOfPixelBoundsWithTolerance:(CGFloat)tolerance;
 
 - (NSImage *)imageClippedToPixelBounds;
 - (NSImage *)imageClippedToPixelBoundsWithTolerance:(CGFloat)tolerance;

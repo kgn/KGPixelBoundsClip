@@ -19,7 +19,8 @@
 		730C18FD1620FE3400030D44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730C18FC1620FE3300030D44 /* UIKit.framework */; };
 		730C18FF1620FE3800030D44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730C18FE1620FE3800030D44 /* Foundation.framework */; };
 		730C19001620FE4C00030D44 /* KGPixelBoundsClip.m in Sources */ = {isa = PBXBuildFile; fileRef = 730478DB1620F131005869BA /* KGPixelBoundsClip.m */; };
-		730C19021620FF3000030D44 /* shape.png in Resources */ = {isa = PBXBuildFile; fileRef = 730C19011620FF3000030D44 /* shape.png */; };
+		730C19021620FF3000030D44 /* shape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 730C19011620FF3000030D44 /* shape@2x.png */; };
+		730FA18A162124F700EDEE03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA189162124F700EDEE03 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,7 +51,8 @@
 		730C18F91620FDE300030D44 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		730C18FC1620FE3300030D44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		730C18FE1620FE3800030D44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		730C19011620FF3000030D44 /* shape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shape.png; sourceTree = SOURCE_ROOT; };
+		730C19011620FF3000030D44 /* shape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shape@2x.png"; sourceTree = SOURCE_ROOT; };
+		730FA189162124F700EDEE03 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				730FA18A162124F700EDEE03 /* CoreGraphics.framework in Frameworks */,
 				730C18FF1620FE3800030D44 /* Foundation.framework in Frameworks */,
 				730C18FD1620FE3400030D44 /* UIKit.framework in Frameworks */,
 			);
@@ -99,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				730478BD161FDA95005869BA /* main.m */,
+				730FA189162124F700EDEE03 /* CoreGraphics.framework */,
 				730478C2161FDBBF005869BA /* AppKit.framework */,
 				730478AF161FDA6C005869BA /* Foundation.framework */,
 			);
@@ -114,7 +118,7 @@
 				730C18F11620FDD100030D44 /* Default-568h@2x.png */,
 				730C18F21620FDD100030D44 /* Default.png */,
 				730C18F31620FDD100030D44 /* Default@2x.png */,
-				730C19011620FF3000030D44 /* shape.png */,
+				730C19011620FF3000030D44 /* shape@2x.png */,
 				730C18FE1620FE3800030D44 /* Foundation.framework */,
 				730C18FC1620FE3300030D44 /* UIKit.framework */,
 			);
@@ -194,7 +198,7 @@
 				730C18F41620FDD100030D44 /* Default-568h@2x.png in Resources */,
 				730C18F51620FDD100030D44 /* Default.png in Resources */,
 				730C18F61620FDD100030D44 /* Default@2x.png in Resources */,
-				730C19021620FF3000030D44 /* shape.png in Resources */,
+				730C19021620FF3000030D44 /* shape@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +362,7 @@
 				730C18F01620FD9B00030D44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
