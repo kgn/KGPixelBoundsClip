@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 David Keegan. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 #if TARGET_OS_IPHONE
 
 #import <UIKit/UIKit.h>

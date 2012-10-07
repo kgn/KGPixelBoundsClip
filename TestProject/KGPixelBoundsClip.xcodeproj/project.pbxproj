@@ -11,6 +11,15 @@
 		730478BE161FDA95005869BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 730478BD161FDA95005869BA /* main.m */; };
 		730478C3161FDBBF005869BA /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730478C2161FDBBF005869BA /* AppKit.framework */; };
 		730478DC1620F131005869BA /* KGPixelBoundsClip.m in Sources */ = {isa = PBXBuildFile; fileRef = 730478DB1620F131005869BA /* KGPixelBoundsClip.m */; };
+		730C18F41620FDD100030D44 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 730C18F11620FDD100030D44 /* Default-568h@2x.png */; };
+		730C18F51620FDD100030D44 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 730C18F21620FDD100030D44 /* Default.png */; };
+		730C18F61620FDD100030D44 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 730C18F31620FDD100030D44 /* Default@2x.png */; };
+		730C18FA1620FDE300030D44 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 730C18F81620FDE300030D44 /* AppDelegate.m */; };
+		730C18FB1620FDE300030D44 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 730C18F91620FDE300030D44 /* main.m */; };
+		730C18FD1620FE3400030D44 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730C18FC1620FE3300030D44 /* UIKit.framework */; };
+		730C18FF1620FE3800030D44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730C18FE1620FE3800030D44 /* Foundation.framework */; };
+		730C19001620FE4C00030D44 /* KGPixelBoundsClip.m in Sources */ = {isa = PBXBuildFile; fileRef = 730478DB1620F131005869BA /* KGPixelBoundsClip.m */; };
+		730C19021620FF3000030D44 /* shape.png in Resources */ = {isa = PBXBuildFile; fileRef = 730C19011620FF3000030D44 /* shape.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +41,16 @@
 		730478C2161FDBBF005869BA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		730478DA1620F131005869BA /* KGPixelBoundsClip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGPixelBoundsClip.h; path = ../KGPixelBoundsClip.h; sourceTree = "<group>"; };
 		730478DB1620F131005869BA /* KGPixelBoundsClip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KGPixelBoundsClip.m; path = ../KGPixelBoundsClip.m; sourceTree = "<group>"; };
+		730C18D31620FD9A00030D44 /* KGPixelBoundsClipIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KGPixelBoundsClipIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		730C18F11620FDD100030D44 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		730C18F21620FDD100030D44 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		730C18F31620FDD100030D44 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		730C18F71620FDE300030D44 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		730C18F81620FDE300030D44 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		730C18F91620FDE300030D44 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		730C18FC1620FE3300030D44 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		730C18FE1620FE3800030D44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		730C19011620FF3000030D44 /* shape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shape.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,16 +63,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		730C18D01620FD9A00030D44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				730C18FF1620FE3800030D44 /* Foundation.framework in Frameworks */,
+				730C18FD1620FE3400030D44 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		730478A0161FDA6C005869BA = {
 			isa = PBXGroup;
 			children = (
-				730478BD161FDA95005869BA /* main.m */,
 				730478DA1620F131005869BA /* KGPixelBoundsClip.h */,
 				730478DB1620F131005869BA /* KGPixelBoundsClip.m */,
-				730478AE161FDA6C005869BA /* Frameworks */,
+				730478AE161FDA6C005869BA /* Mac Project */,
+				730C18DC1620FD9A00030D44 /* iOS Project */,
 				730478AC161FDA6C005869BA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,17 +90,36 @@
 			isa = PBXGroup;
 			children = (
 				730478AB161FDA6C005869BA /* KGPixelBoundsClip */,
+				730C18D31620FD9A00030D44 /* KGPixelBoundsClipIOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		730478AE161FDA6C005869BA /* Frameworks */ = {
+		730478AE161FDA6C005869BA /* Mac Project */ = {
 			isa = PBXGroup;
 			children = (
+				730478BD161FDA95005869BA /* main.m */,
 				730478C2161FDBBF005869BA /* AppKit.framework */,
 				730478AF161FDA6C005869BA /* Foundation.framework */,
 			);
-			name = Frameworks;
+			name = "Mac Project";
+			sourceTree = "<group>";
+		};
+		730C18DC1620FD9A00030D44 /* iOS Project */ = {
+			isa = PBXGroup;
+			children = (
+				730C18F91620FDE300030D44 /* main.m */,
+				730C18F71620FDE300030D44 /* AppDelegate.h */,
+				730C18F81620FDE300030D44 /* AppDelegate.m */,
+				730C18F11620FDD100030D44 /* Default-568h@2x.png */,
+				730C18F21620FDD100030D44 /* Default.png */,
+				730C18F31620FDD100030D44 /* Default@2x.png */,
+				730C19011620FF3000030D44 /* shape.png */,
+				730C18FE1620FE3800030D44 /* Foundation.framework */,
+				730C18FC1620FE3300030D44 /* UIKit.framework */,
+			);
+			name = "iOS Project";
+			path = KGPixelBoundsClipIOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,6 +141,23 @@
 			productName = KGPixelBoundsClip;
 			productReference = 730478AB161FDA6C005869BA /* KGPixelBoundsClip */;
 			productType = "com.apple.product-type.tool";
+		};
+		730C18D21620FD9A00030D44 /* KGPixelBoundsClipIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 730C18EE1620FD9B00030D44 /* Build configuration list for PBXNativeTarget "KGPixelBoundsClipIOS" */;
+			buildPhases = (
+				730C18CF1620FD9A00030D44 /* Sources */,
+				730C18D01620FD9A00030D44 /* Frameworks */,
+				730C18D11620FD9A00030D44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KGPixelBoundsClipIOS;
+			productName = KGPixelBoundsClipIOS;
+			productReference = 730C18D31620FD9A00030D44 /* KGPixelBoundsClipIOS.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -117,9 +181,24 @@
 			projectRoot = "";
 			targets = (
 				730478AA161FDA6C005869BA /* KGPixelBoundsClip */,
+				730C18D21620FD9A00030D44 /* KGPixelBoundsClipIOS */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		730C18D11620FD9A00030D44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				730C18F41620FDD100030D44 /* Default-568h@2x.png in Resources */,
+				730C18F51620FDD100030D44 /* Default.png in Resources */,
+				730C18F61620FDD100030D44 /* Default@2x.png in Resources */,
+				730C19021620FF3000030D44 /* shape.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		730478A7161FDA6C005869BA /* Sources */ = {
@@ -128,6 +207,16 @@
 			files = (
 				730478BE161FDA95005869BA /* main.m in Sources */,
 				730478DC1620F131005869BA /* KGPixelBoundsClip.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		730C18CF1620FD9A00030D44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				730C18FA1620FDE300030D44 /* AppDelegate.m in Sources */,
+				730C18FB1620FDE300030D44 /* main.m in Sources */,
+				730C19001620FE4C00030D44 /* KGPixelBoundsClip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +292,44 @@
 			};
 			name = Release;
 		};
+		730C18EF1620FD9B00030D44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				INFOPLIST_FILE = "KGPixelBoundsClipIOS/KGPixelBoundsClipIOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		730C18F01620FD9B00030D44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				INFOPLIST_FILE = "KGPixelBoundsClipIOS/KGPixelBoundsClipIOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -223,6 +350,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		730C18EE1620FD9B00030D44 /* Build configuration list for PBXNativeTarget "KGPixelBoundsClipIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				730C18EF1620FD9B00030D44 /* Debug */,
+				730C18F01620FD9B00030D44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
