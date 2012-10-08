@@ -1,3 +1,7 @@
+** WARNING: ** This project is not yet ready for use, it's close but not quite there yet. Check back in a couple of hours ;)
+
+---
+
 KGPixelBoundsClip is an `NSImage` category that provides methods to find the pixel bounds of an image and create a new image clipped to those bounds.
 
 There are two sets of methods, the first returns the pixel bounds of an image as a rect. The second uses these methods to create a new image clipped to the pixel bounds.
