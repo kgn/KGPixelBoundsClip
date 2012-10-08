@@ -16,7 +16,7 @@ A tolerance can be specified, this value defines how transparent a pixel can be 
 
 # Results
 
-![](https://raw.github.com/kgn/KGPixelBoundsClip/master/TestProject/results.png)
+![](https://raw.github.com/kgn/KGPixelBoundsClip/master/results.png)
 
 # Testing
 
