@@ -9,12 +9,12 @@
 #import "KGPixelBoundsClip.h"
 
 @interface KGPixelBoundsClip : NSObject
-@property (strong, nonatomic) NSData *data;
-@property (nonatomic) NSUInteger topLeftX, topLeftY;
-@property (nonatomic) NSUInteger bottomRightX, bottomRightY;
-@property (nonatomic) CGFloat tolerance;
 @property (nonatomic) CGRect rect;
 @property (nonatomic) NSUInteger width;
+@property (nonatomic) CGFloat tolerance;
+@property (strong, nonatomic) NSData *data;
+@property (nonatomic) NSUInteger topLeftX, topLeftY, bottomRightX, bottomRightY;
+@property (nonatomic) BOOL foundTopX, foundTopY, foundBottomRightX, foundBottomRightY;
 - (id)initWithImage:(id)image andTolerance:(CGFloat)tolerance;
 @end
 
@@ -45,7 +45,6 @@
 }
 
 - (BOOL)pixelIsOpaqueAtX:(NSUInteger)x andY:(NSUInteger)y{
-//    NSLog(@"%ld, %ld", (unsigned long)x, (unsigned long)y);
     NSUInteger pixelIndex = (y*self.width+x)*4;
     const uint8_t *bytes = [self.data bytes];
     CGFloat alpha = (CGFloat)bytes[pixelIndex+3]/255;
@@ -97,17 +96,25 @@
         return;
     }
 
-    if([self rowContainsOpaquePixelInRowY:self.topLeftY fromX:self.topLeftX reversed:NO]){
-        return;
+    if(!self.foundTopX){
+        if([self rowContainsOpaquePixelInRowY:self.topLeftY fromX:self.topLeftX reversed:NO]){
+            self.foundTopX = YES;
+        }else{
+            self.topLeftY++;
+        }
     }
-    self.topLeftY++;
 
-    if([self rowContainsOpaquePixelInRowX:self.topLeftX fromY:self.topLeftY reversed:NO]){
-        return;
+    if(!self.foundTopY){
+        if([self rowContainsOpaquePixelInRowX:self.topLeftX fromY:self.topLeftY reversed:NO]){
+            self.foundTopY = YES;
+        }else{
+            self.topLeftX++;
+        }
     }
-    self.topLeftX++;
-    
-    [self findTopLeftPoint];
+
+    if(!self.foundTopX || !self.foundTopY){
+        [self findTopLeftPoint];
+    }
 }
 
 - (void)findBottomRightPoint{
@@ -118,17 +125,25 @@
         return;
     }
 
-    if([self rowContainsOpaquePixelInRowY:self.bottomRightY fromX:self.bottomRightX reversed:YES]){
-        return;
+    if(!self.foundBottomRightY){
+        if([self rowContainsOpaquePixelInRowY:self.bottomRightY fromX:self.bottomRightX reversed:YES]){
+            self.foundBottomRightY = YES;
+        }else{
+            self.bottomRightY--;
+        }
     }
-    self.bottomRightY--;
 
-    if([self rowContainsOpaquePixelInRowX:self.bottomRightX fromY:self.bottomRightY reversed:YES]){
-        return;
+    if(!self.foundBottomRightX){
+        if([self rowContainsOpaquePixelInRowX:self.bottomRightX fromY:self.bottomRightY reversed:YES]){
+            self.foundBottomRightX = YES;
+        }else{
+            self.bottomRightX--;
+        }
     }
-    self.bottomRightX--;
 
-    [self findBottomRightPoint];
+    if(!self.foundBottomRightY || !self.foundBottomRightX){
+        [self findBottomRightPoint];
+    }
 }
 
 - (CGRect)rect{
@@ -145,8 +160,6 @@
     }else{
         clipRect.origin.y = 0;
     }
-
-//    NSLog(@"{%f, %f, %f, %f}", clipRect.origin.x, clipRect.origin.y, clipRect.size.width, clipRect.size.height);
 
     return clipRect;
 }
