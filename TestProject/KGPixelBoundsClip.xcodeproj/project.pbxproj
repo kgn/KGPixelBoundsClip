@@ -21,6 +21,8 @@
 		730C19001620FE4C00030D44 /* KGPixelBoundsClip.m in Sources */ = {isa = PBXBuildFile; fileRef = 730478DB1620F131005869BA /* KGPixelBoundsClip.m */; };
 		730C19021620FF3000030D44 /* shape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 730C19011620FF3000030D44 /* shape@2x.png */; };
 		730FA18A162124F700EDEE03 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730FA189162124F700EDEE03 /* CoreGraphics.framework */; };
+		73740A26162B346F00827A42 /* dial@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73740A25162B346F00827A42 /* dial@2x.png */; };
+		73E6DD38162DDB4F009E59C6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E6DD37162DDB4F009E59C6 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +55,8 @@
 		730C18FE1620FE3800030D44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		730C19011620FF3000030D44 /* shape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shape@2x.png"; sourceTree = SOURCE_ROOT; };
 		730FA189162124F700EDEE03 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		73740A25162B346F00827A42 /* dial@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dial@2x.png"; sourceTree = SOURCE_ROOT; };
+		73E6DD37162DDB4F009E59C6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E6DD38162DDB4F009E59C6 /* QuartzCore.framework in Frameworks */,
 				730FA18A162124F700EDEE03 /* CoreGraphics.framework in Frameworks */,
 				730C18FF1620FE3800030D44 /* Foundation.framework in Frameworks */,
 				730C18FD1620FE3400030D44 /* UIKit.framework in Frameworks */,
@@ -81,6 +86,7 @@
 		730478A0161FDA6C005869BA = {
 			isa = PBXGroup;
 			children = (
+				73E6DD37162DDB4F009E59C6 /* QuartzCore.framework */,
 				730478DA1620F131005869BA /* KGPixelBoundsClip.h */,
 				730478DB1620F131005869BA /* KGPixelBoundsClip.m */,
 				730478AE161FDA6C005869BA /* Mac Project */,
@@ -119,6 +125,7 @@
 				730C18F21620FDD100030D44 /* Default.png */,
 				730C18F31620FDD100030D44 /* Default@2x.png */,
 				730C19011620FF3000030D44 /* shape@2x.png */,
+				73740A25162B346F00827A42 /* dial@2x.png */,
 				730C18FE1620FE3800030D44 /* Foundation.framework */,
 				730C18FC1620FE3300030D44 /* UIKit.framework */,
 			);
@@ -199,6 +206,7 @@
 				730C18F51620FDD100030D44 /* Default.png in Resources */,
 				730C18F61620FDD100030D44 /* Default@2x.png in Resources */,
 				730C19021620FF3000030D44 /* shape@2x.png in Resources */,
+				73740A26162B346F00827A42 /* dial@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
