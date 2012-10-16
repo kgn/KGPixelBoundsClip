@@ -11,7 +11,7 @@
 @interface KGPixelBoundsClip : NSObject
 @property (nonatomic) CGRect rect;
 @property (nonatomic) NSUInteger width;
-@property (nonatomic) CGFloat tolerance;
+@property (nonatomic) NSUInteger tolerance;
 @property (strong, nonatomic) NSData *data;
 @property (nonatomic) NSUInteger topLeftX, topLeftY, bottomRightX, bottomRightY;
 @property (nonatomic) BOOL foundTopX, foundTopY, foundBottomRightX, foundBottomRightY;
@@ -25,7 +25,7 @@
     if(!(self = [super init])){
         return nil;
     }
-    self.tolerance = tolerance;
+    self.tolerance = tolerance*255;
 
 #if TARGET_OS_IPHONE
     CGImageRef imageRef = [(UIImage *)image CGImage];
@@ -71,7 +71,7 @@
 //    NSLog(@"%lu, %lu", x, y);
     const uint8_t *bytes = [self.data bytes];
     NSUInteger pixelIndex = (y*self.width+x)*self.bitsMultiplier;
-    CGFloat alpha = (CGFloat)bytes[pixelIndex+self.bitsOffset]/255;
+    NSUInteger alpha = bytes[pixelIndex+self.bitsOffset];
     if(alpha > 0){
         return (alpha >= self.tolerance);
     }
