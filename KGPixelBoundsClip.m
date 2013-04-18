@@ -16,12 +16,11 @@
 @property (nonatomic) NSUInteger topLeftX, topLeftY, bottomRightX, bottomRightY;
 @property (nonatomic) BOOL foundTopX, foundTopY, foundBottomRightX, foundBottomRightY;
 @property (nonatomic) NSUInteger bitsOffset, bitsMultiplier;
-- (id)initWithImage:(id)image andTolerance:(CGFloat)tolerance;
 @end
 
 @implementation KGPixelBoundsClip
 
-- (id)initWithImage:(id)image andTolerance:(CGFloat)tolerance{
+- (instancetype)initWithImage:(id)image andTolerance:(CGFloat)tolerance{
     if(!(self = [super init])){
         return nil;
     }
