@@ -36,24 +36,27 @@
     self.bottomRightX = self.width;
     self.bottomRightY = CGImageGetHeight(imageRef);
 
-    CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
     self.bitsMultiplier = CGImageGetBitsPerPixel(imageRef)/8;
-    switch(alphaInfo){
-        case kCGImageAlphaNone:
-        case kCGImageAlphaNoneSkipFirst:
-        case kCGImageAlphaNoneSkipLast:
-            return self;
-            break;
-        case kCGImageAlphaOnly:
-        case kCGImageAlphaFirst:
-        case kCGImageAlphaPremultipliedFirst:
-            self.bitsOffset = 0;
-            break;
-        case kCGImageAlphaLast:
-        case kCGImageAlphaPremultipliedLast:
-            self.bitsOffset = 3;
-            break;            
-    }
+
+    // Alpha seems to always be in the last byte...
+    self.bitsOffset = 3;
+//    CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);    
+//    switch(alphaInfo){
+//        case kCGImageAlphaNone:
+//        case kCGImageAlphaNoneSkipFirst:
+//        case kCGImageAlphaNoneSkipLast:
+//            return self;
+//            break;
+//        case kCGImageAlphaOnly:
+//        case kCGImageAlphaFirst:
+//        case kCGImageAlphaPremultipliedFirst:
+//            self.bitsOffset = 0;
+//            break;
+//        case kCGImageAlphaLast:
+//        case kCGImageAlphaPremultipliedLast:
+//            self.bitsOffset = 3;
+//            break;            
+//    }
 
     CGDataProviderRef provider = CGImageGetDataProvider(imageRef);
     self.data = CFBridgingRelease(CGDataProviderCopyData(provider));
@@ -67,10 +70,11 @@
 }
 
 - (BOOL)pixelIsOpaqueAtX:(NSUInteger)x andY:(NSUInteger)y{
-//    NSLog(@"%lu, %lu", x, y);
+//    NSLog(@"%lu, %lu", (unsigned long)x, (unsigned long)y);
     const uint8_t *bytes = [self.data bytes];
     NSUInteger pixelIndex = (y*self.width+x)*self.bitsMultiplier;
     NSUInteger alpha = bytes[pixelIndex+self.bitsOffset];
+//    NSLog(@"%lu, %lu, %lu, %lu", (unsigned long)bytes[pixelIndex], (unsigned long)bytes[pixelIndex+self.bitsOffset+1], (unsigned long)bytes[pixelIndex+self.bitsOffset+2], (unsigned long)bytes[pixelIndex+self.bitsOffset+3]);
     if(alpha > 0){
         return (alpha >= self.tolerance);
     }
